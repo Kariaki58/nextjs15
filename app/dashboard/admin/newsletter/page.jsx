@@ -91,7 +91,7 @@ const Page = () => {
   const filteredNewsletters = newsletters.filter((newsletter) => newsletter.status === selectedStatus);
 
   return (
-    <div className="p-4 bg-gray-100 h-screen overflow-auto">
+    <div className="p-4 bg-gray-100">
       <h1 className="text-3xl font-bold text-center mb-8">Newsletter Management</h1>
 
       {/* Create new newsletter */}

@@ -38,18 +38,6 @@ const shadeOptions = [
   }
 ]
 
-const quillModules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6] }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strikethrough", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link", "image", "code-block", "video"],
-    [{ align: [] }],
-    ["clean"],
-    ["align"],
-  ],
-};
 
 
 const Modal = ({ setOpenModal }) => {
@@ -173,7 +161,7 @@ const Modal = ({ setOpenModal }) => {
               value={productDetails.basePrice}
               onChange={(e) => onChangeProductDetails("basePrice", e.target.value)}
               className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-gray-900 focus:border-gray-900"
-              required // Added required attribute
+              required
             />
           </div>
           <div>
@@ -184,7 +172,7 @@ const Modal = ({ setOpenModal }) => {
               value={productDetails.discount}
               onChange={(e) => onChangeProductDetails("discount", e.target.value)}
               className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-gray-900 focus:border-gray-900"
-              required // Added required attribute
+              required
             />
           </div>
           <div>
@@ -229,7 +217,16 @@ const Modal = ({ setOpenModal }) => {
                 className="mt-1"
               />
             </div>
-
+            <div>
+              <label htmlFor="shades" className="block text-gray-900">Shades:</label>
+              <CreatableSelect
+                id="shades"
+                options={shadeOptions}
+                value={variant.shades}
+                onChange={(selected) => onChangeVariant("shades", selected)}
+                className="mt-1"
+              />
+            </div>
             <div>
               <label htmlFor="variantPrice" className="block text-gray-900">Variant Price</label>
               <input
@@ -251,16 +248,6 @@ const Modal = ({ setOpenModal }) => {
                 onChange={(e) => onChangeVariant("stock", e.target.value)}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-gray-900 focus:border-gray-900"
                 required
-              />
-            </div>
-            <div>
-              <label htmlFor="shades" className="block text-gray-900">Shades:</label>
-              <CreatableSelect
-                id="shades"
-                options={shadeOptions}
-                value={variant.shades}
-                onChange={(selected) => onChangeVariant("shades", selected)}
-                className="mt-1"
               />
             </div>
             <div>

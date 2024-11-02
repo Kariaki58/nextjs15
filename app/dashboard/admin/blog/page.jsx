@@ -70,7 +70,7 @@ const Page = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 h-screen overflow-auto">
+    <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Blog Management System</h1>
       
       {/* Dashboard Overview */}

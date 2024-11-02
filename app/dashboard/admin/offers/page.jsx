@@ -23,7 +23,7 @@ const page = () => {
       engagement: 75,
     });
   return (
-    <div className="admin-offers-panel container mx-auto p-4 h-screen overflow-y-auto">
+    <div className="admin-offers-panel container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">Admin Offer Management</h1>
       <div className="flex gap-4 justify-center mb-6">  
         <Button>LAUCH OFFER</Button>

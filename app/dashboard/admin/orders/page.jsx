@@ -73,7 +73,7 @@ const Page = () => {
       : products.filter((product) => product.status === filter);
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 min-h-screen">
       <h1 className="text-4xl font-bold text-gray-800 mb-8">Order Summary</h1>
 
       {/* Grid Cards for Total Metrics */}

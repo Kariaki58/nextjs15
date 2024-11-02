@@ -1,4 +1,5 @@
-import Left from "@/app/componenets/dashboard/Left";
+import AppSidebar from "@/app/componenets/dashboard/Left";
+
 
 export const metadata = {
   title: 'Dashboard',
@@ -8,8 +9,8 @@ export const metadata = {
 const page = ({ children }) => {
   return (
     <div className="flex">
-      <div className="w-72">
-        <Left />
+      <div className="lg:w-60">
+        <AppSidebar />
       </div>
       <div className="flex-1 p-4 bg-gray-100 overflow-y-hidden">
         {children}
