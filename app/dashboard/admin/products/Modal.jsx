@@ -1,17 +1,14 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
 import { useDropzone } from "react-dropzone";
 import CreatableSelect from "react-select/creatable";
 import { LiaTimesSolid } from "react-icons/lia";
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import { FaRegCopy } from "react-icons/fa"
+import Editor from "./Editor";
 
-
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const sizeOptions = [
   { value: "30ml", label: "30ml" },
@@ -54,20 +51,6 @@ const quillModules = {
   ],
 };
 
-const quillFormats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "list",
-  "bullet",
-  "align",
-  "link",
-  "image",
-  "video",
-];
 
 const Modal = ({ setOpenModal }) => {
   const [productDetails, setProductDetails] = useState({
@@ -88,7 +71,7 @@ const Modal = ({ setOpenModal }) => {
     variantImages: [],
   });
 
-  const [editIndex, setEditIndex] = useState(null); // Tracks if we're editing an existing variant
+  const [editIndex, setEditIndex] = useState(null);
 
   // Handle product details change
   const onChangeProductDetails = (name, value) => {
@@ -125,7 +108,7 @@ const Modal = ({ setOpenModal }) => {
       const updatedVariants = [...productDetails.variants];
       updatedVariants[editIndex] = variant;
       setProductDetails((prev) => ({ ...prev, variants: updatedVariants }));
-      setEditIndex(null); // Reset edit mode
+      setEditIndex(null);
     } else {
       setProductDetails((prev) => ({
         ...prev,
@@ -217,16 +200,8 @@ const Modal = ({ setOpenModal }) => {
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="description" className="block text-gray-900">Description</label>
-          <ReactQuill
-            id="description"
-            value={productDetails.description}
-            onChange={(value) => onChangeProductDetails("description", value)}
-            modules={quillModules}
-            formats={quillFormats}
-            className="w-full mt-1 p-2 rounded-md focus:ring-gray-900 focus:border-gray-900 h-52"
-          />
+          <Editor />
         </div>
-        <div className="h-10"></div>
         {/* Variant Section */}
         <div className="mt-4 p-4 border rounded-md">
           <h4 className="text-lg font-semibold">Product Variants:</h4>
@@ -322,13 +297,12 @@ const Modal = ({ setOpenModal }) => {
               className="border-dashed border-2 border-gray-300 p-4 rounded-md text-center cursor-pointer"
             >
               <input {...getInputProps()} />
-              <p>Drag 'n' drop images here, or click to select images</p>
+              <p>Drag n drop images here, or click to select images</p>
             </div>
             <div className="flex space-x-2 mt-4">
               {variant.variantImages.map((file, idx) => (
-                <div className="relative">
+                <div className="relative" key={idx}>
                   <Image
-                    key={idx}
                     src={URL.createObjectURL(file)}
                     alt={`Variant image ${idx + 1}`}
                     width={100}
